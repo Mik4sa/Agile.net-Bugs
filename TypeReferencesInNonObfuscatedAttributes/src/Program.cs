@@ -1,6 +1,7 @@
 ﻿using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -12,6 +13,9 @@ namespace TypeReferencesInNonObfuscatedAttributes
     {
         private static void Main()
         {
+            CultureInfo.CurrentCulture = new CultureInfo("en-US");
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
+
             MethodInfo getStringMethodInfo = typeof(Class1).GetMethods().First();
             List<Attribute> attributes = getStringMethodInfo.GetCustomAttributes(false).Cast<Attribute>().ToList(); // This is crashing
 
